@@ -1,0 +1,16 @@
+@import "./normalize.css";
+
+body {
+    font-family: "Roboto"; font-size: 1rem;
+    background-color: rgb(235, 174, 133);
+    width: 60%;
+    justify-self: center;
+}
+
+div {
+    margin: 1rem;
+}
+
+h1 {
+    font-weight: 900;
+}
