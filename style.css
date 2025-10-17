@@ -68,6 +68,11 @@ button#delete {
     }
 }
 
+input[type='checkbox'] {
+    text-align: center;
+    vertical-align: middle;
+}
+
 form {
     display: grid;
     grid-template-columns: 1fr 2fr;

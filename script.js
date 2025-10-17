@@ -36,6 +36,11 @@ function Book(title, author, pages) {
     this.title = title;
     this.author = author;
     this.pages = pages;
+    this.isRead = false;
+
+    this.toggleRead = function() {
+        this.isRead = !this.isRead;
+    }
 }
 
 function addBookToLibrary(title, author, pages) {
@@ -49,14 +54,29 @@ function addBookToTable(book) {
     const cellAuthor = newRow.insertCell();
     const cellPages = newRow.insertCell();
     const cellButton = newRow.insertCell();
+    const cellRead = newRow.insertCell();
 
     const button = document.createElement('button')
     button.id = 'delete';
     button.textContent = '✖';
     button.setAttribute('uuid',book.uuid);
+
+    const checkbox = document.createElement('input')
+    checkbox.type = 'checkbox';
+    checkbox.name = 'read';
+    checkbox.setAttribute('uuid',book.uuid);
+
+    checkbox.addEventListener('change', function() {
+        const uuid = this.getAttribute('uuid');
+        const i = library.findIndex(item => item.uuid === uuid);
+        
+        library[i].toggleRead();
+            
+    });
     
     cellTitle.textContent = book.title;
     cellAuthor.textContent = book.author;
     cellPages.textContent = book.pages;
     cellButton.appendChild(button);
+    cellRead.appendChild(checkbox);
 }
