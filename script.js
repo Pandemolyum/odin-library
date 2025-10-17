@@ -4,7 +4,23 @@ addBookToLibrary("Gospel of Biff", "Christopher Moore", 420);
 addBookToLibrary("Gospel of John", "Boring Dude", 200);
 addBookToLibrary("Gospel of Mark", "Markyboy", 69);
 
-displayLibrary(library);
+for (book of library) {
+    addBookToTable(book);
+}
+
+addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const form = document.querySelector('form');
+    const formData = new FormData(form);
+
+    const title = formData.get("title");
+    const author = formData.get("author");
+    const pages = formData.get("pages");
+    
+    addBookToLibrary(title, author, pages);
+    addBookToTable(library.at(-1));
+});
 
 function Book(title, author, pages) {
     this.uuid = crypto.randomUUID();
@@ -17,22 +33,21 @@ function addBookToLibrary(title, author, pages) {
     library.push(new Book(title, author, pages));
 }
 
-function displayLibrary(lib) {
-    for (book of lib) {
-        const table = document.querySelector('table');
-        const newRow = table.insertRow();
-        const cellTitle = newRow.insertCell();
-        const cellAuthor = newRow.insertCell();
-        const cellPages = newRow.insertCell();
-        const cellButton = newRow.insertCell();
-        const button = document.createElement('button')
-        button.id = 'delete';
-        button.textContent = '✖';
-        button.setAttribute('uuid',book.uuid);
+function addBookToTable(book) {
+    const table = document.querySelector('table');
+    const newRow = table.insertRow();
+    const cellTitle = newRow.insertCell();
+    const cellAuthor = newRow.insertCell();
+    const cellPages = newRow.insertCell();
+    const cellButton = newRow.insertCell();
 
-        cellTitle.textContent = book.title;
-        cellAuthor.textContent = book.author;
-        cellPages.textContent = book.pages;
-        cellButton.appendChild(button);
-    }
+    const button = document.createElement('button')
+    button.id = 'delete';
+    button.textContent = '✖';
+    button.setAttribute('uuid',book.uuid);
+    
+    cellTitle.textContent = book.title;
+    cellAuthor.textContent = book.author;
+    cellPages.textContent = book.pages;
+    cellButton.appendChild(button);
 }
