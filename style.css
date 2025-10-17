@@ -73,6 +73,7 @@ form {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr 1fr;
     gap: 0.5rem;
+    align-items: center;
     
     justify-self: center;
     padding: 1rem;
@@ -86,4 +87,10 @@ div.text-input {
     display: flex;
     justify-content: center;
     align-items: stretch;
+}
+
+input {
+    border-radius: 1rem;
+    border: 1px solid black;
+    padding: 0.2rem 0.2rem 0.2rem 0.8rem;
 }
