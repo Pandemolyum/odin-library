@@ -40,6 +40,19 @@ caption {
   padding: 10px;
 }
 
+button#newBook {
+    background-color: blanchedalmond;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0 0 0;
+
+    grid-column: span 2;
+
+    &:hover {
+        background-color: rgb(255, 205, 129);
+    }
+}
+
 button#delete {
     text-align: center;
     vertical-align: middle;
@@ -53,4 +66,24 @@ button#delete {
     &:hover {
         background-color: rgba(255, 0, 0, 0.24);
     }
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.5rem;
+    
+    justify-self: center;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    width: 75%;
+    background-color: bisque;
+}
+
+div.text-input {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
 }
