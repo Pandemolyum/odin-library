@@ -53,8 +53,8 @@ function addBookToTable(book) {
     const cellTitle = newRow.insertCell();
     const cellAuthor = newRow.insertCell();
     const cellPages = newRow.insertCell();
-    const cellButton = newRow.insertCell();
     const cellRead = newRow.insertCell();
+    const cellButton = newRow.insertCell();
 
     const button = document.createElement('button')
     button.id = 'delete';
