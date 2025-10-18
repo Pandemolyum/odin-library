@@ -1,9 +1,5 @@
 const library = [];
 
-addBookToLibrary('Gospel of Biff', 'Christopher Moore', 420);
-addBookToLibrary('Gospel of John', 'Boring Dude', 200);
-addBookToLibrary('Gospel of Mark', 'Markyboy', 69);
-
 for (book of library) {
     addBookToTable(book);
 }
