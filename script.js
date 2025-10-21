@@ -27,14 +27,17 @@ addEventListener('click', (e) => {
     }
 });
 
-function Book(title, author, pages) {
-    this.uuid = crypto.randomUUID();
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = false;
+class Book {
+    uuid = crypto.randomUUID();
+    isRead = false;
 
-    this.toggleRead = function() {
+    constructor(title, author, pages) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+    }
+
+    toggleRead() {
         this.isRead = !this.isRead;
     }
 }
