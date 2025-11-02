@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Library</title>
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <form action="" method="POST">
         <label>Book Title: </label>
-        <input type="text" name="title">
-        
+        <input type="text" name="title" required>
+
 
         <label>Author: </label>
-        <input type="text" name="author">
-        
+        <input type="text" name="author" required>
+
         <label>Number of Pages: </label>
-        <input type="number" name="pages">
-        
+        <input type="number" name="pages" min="1">
+
         <button id="newBook" type="submit">Add New Book</button>
     </form>
-    
+
     <table>
         <tr>
             <th>Title</th>
@@ -37,4 +40,5 @@
         </tr>
     </table>
 </body>
+
 </html>

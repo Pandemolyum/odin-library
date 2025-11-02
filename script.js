@@ -4,29 +4,81 @@ for (book of library) {
     addBookToTable(book);
 }
 
-addEventListener('submit', (e) => {
+addEventListener("submit", (e) => {
     e.preventDefault();
 
-    const form = document.querySelector('form');
+    const form = document.querySelector("form");
     const formData = new FormData(form);
 
-    const title = formData.get('title');
-    const author = formData.get('author');
-    const pages = formData.get('pages');
-    
+    const title = formData.get("title");
+    const author = formData.get("author");
+    const pages = formData.get("pages");
+
     addBookToLibrary(title, author, pages);
     addBookToTable(library.at(-1));
 });
 
-addEventListener('click', (e) => {
-    if (e.target.id === 'delete') {
-        const uuid = e.target.getAttribute('uuid');
-        const i = library.findIndex(item => item.uuid === uuid);
+addEventListener("click", (e) => {
+    if (e.target.id === "delete") {
+        const uuid = e.target.getAttribute("uuid");
+        const i = library.findIndex((item) => item.uuid === uuid);
         library.splice(i, 1);
         e.target.parentElement.parentElement.remove();
     }
 });
 
+// ===== FORM VALIDATION =====
+const titleInput = document.querySelector("[name='title']");
+titleInput.setCustomValidity("");
+titleInput.addEventListener("input", (e) => {
+    if (!titleInput.checkValidity()) {
+        titleInput.setCustomValidity("");
+    } else {
+        titleInput.setCustomValidity("Please enter a book title.");
+    }
+});
+titleInput.addEventListener("invalid", () => {
+    if (titleInput.value === "") {
+        titleInput.setCustomValidity(
+            "This field is required. Please enter a book title."
+        );
+    } else {
+        titleInput.setCustomValidity("");
+    }
+});
+
+const authorInput = document.querySelector("[name='author']");
+authorInput.setCustomValidity("");
+authorInput.addEventListener("input", (e) => {
+    if (!authorInput.checkValidity()) {
+        authorInput.setCustomValidity("");
+    } else {
+        authorInput.setCustomValidity("Please enter an author.");
+    }
+});
+authorInput.addEventListener("invalid", () => {
+    if (authorInput.value === "") {
+        authorInput.setCustomValidity(
+            "This field is required. Please enter an author."
+        );
+    } else {
+        authorInput.setCustomValidity("");
+    }
+});
+
+const pagesInput = document.querySelector("[name='pages']");
+pagesInput.setCustomValidity("");
+pagesInput.addEventListener("input", (e) => {
+    if (!pagesInput.checkValidity()) {
+        pagesInput.setCustomValidity("");
+    }
+
+    if (pagesInput.validity.rangeUnderflow) {
+        pagesInput.setCustomValidity("Please enter a number above 0");
+    }
+});
+
+// ===== CLASSES AND FUNCTIONS =====
 class Book {
     uuid = crypto.randomUUID();
     isRead = false;
@@ -47,7 +99,7 @@ function addBookToLibrary(title, author, pages) {
 }
 
 function addBookToTable(book) {
-    const table = document.querySelector('table');
+    const table = document.querySelector("table");
     const newRow = table.insertRow();
     const cellTitle = newRow.insertCell();
     const cellAuthor = newRow.insertCell();
@@ -55,24 +107,23 @@ function addBookToTable(book) {
     const cellRead = newRow.insertCell();
     const cellButton = newRow.insertCell();
 
-    const button = document.createElement('button')
-    button.id = 'delete';
-    button.textContent = '✖';
-    button.setAttribute('uuid',book.uuid);
+    const button = document.createElement("button");
+    button.id = "delete";
+    button.textContent = "✖";
+    button.setAttribute("uuid", book.uuid);
 
-    const checkbox = document.createElement('input')
-    checkbox.type = 'checkbox';
-    checkbox.name = 'read';
-    checkbox.setAttribute('uuid',book.uuid);
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.name = "read";
+    checkbox.setAttribute("uuid", book.uuid);
 
-    checkbox.addEventListener('change', function() {
-        const uuid = this.getAttribute('uuid');
-        const i = library.findIndex(item => item.uuid === uuid);
-        
+    checkbox.addEventListener("change", function () {
+        const uuid = this.getAttribute("uuid");
+        const i = library.findIndex((item) => item.uuid === uuid);
+
         library[i].toggleRead();
-            
     });
-    
+
     cellTitle.textContent = book.title;
     cellAuthor.textContent = book.author;
     cellPages.textContent = book.pages;
